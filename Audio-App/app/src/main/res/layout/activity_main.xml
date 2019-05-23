@@ -21,6 +21,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/play_btn"
             android:layout_width="match_parent"
@@ -34,5 +39,12 @@
             android:layout_height="wrap_content"
             android:onClick="pauseTapped"
             android:text="@string/pause" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
