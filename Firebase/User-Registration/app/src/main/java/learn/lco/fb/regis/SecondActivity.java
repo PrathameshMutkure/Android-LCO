@@ -48,7 +48,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 // All Data in form of String
-                String data = dataSnapshot.getValue().toString();
+                String data = String.valueOf(dataSnapshot.getValue());
 
                 try {
 
