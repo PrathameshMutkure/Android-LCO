@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         // Checks if the user is already signed-in
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        Toast.makeText(this, "Already Signed-in", Toast.LENGTH_SHORT).show();
+        if (currentUser != null)
+            Toast.makeText(this, "Already Signed-in", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void loginTapped(View view) {
+    public void regisTapped(View view) {
 
         final String email = myEmail.getText().toString();
         final String password = myPassword.getText().toString();
@@ -57,15 +58,41 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 // If sign-in is successful
-                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                             } else {
                                 // If sign-in fails
-                                Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
 
         }
+    }
+
+    public void loginTapped(View view){
+
+        final String email = myEmail.getText().toString();
+        final String password = myPassword.getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            // If sign-in is successful
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // If sign-in fails
+                            Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
     }
+
+    public void logoutTapped(View view){
+        mAuth.signOut();
+        Toast.makeText(MainActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
+    }
+
 }
